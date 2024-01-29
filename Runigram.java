@@ -221,7 +221,10 @@ public class Runigram {
 		for (double i = 0; i <= n; i++){
 			double alpha = 1 - i / (double)n ;
 			Color[][] image = blend(source, newTarget, alpha);
+			Runigram.display(image);
+			StdDraw.pause(500);
 		}
+		
 	}
 	
 	/** Creates a canvas for the given image. */
