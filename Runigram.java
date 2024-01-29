@@ -42,7 +42,18 @@ public class Runigram {
 		// creates from the 3 colors a new Color object, and 
 		// makes pixel (i,j) refer to that object.
 		//// Replace the following statement with your code.
-		return null;
+		int num1, num2, num3,k=0;
+		for(int i=0; i<numRows; i++){
+			for(int j=0; j<numCols; j++){
+			num1=in.readInt();
+			num2=in.readInt();
+			num3=in.readInt();
+			image [i][k] = new Color(num1, num2, num3);		
+			k++;
+			}
+			k=0;
+		}	
+		return image;
 	}
 
     // Prints the RGB values of a given color.
@@ -61,38 +72,79 @@ public class Runigram {
 	// we can apply the function and then use this function to print the resulting image.
 	private static void print(Color[][] image) {
 		//// Replace this comment with your code
+		int numRows = image.length;
+		int numCols = image[0].length;
+		for(int i=0; i<numRows; i++){
+			for(int j=0; j<numRows; j++){
+				print(image[i][j]);
+			}
+			System.out.println();
+		}	
 	}
 	
 	/**
 	 * Returns an image which is the horizontally flipped version of the given image. 
 	 */
 	public static Color[][] flippedHorizontally(Color[][] image) {
-		//// Replace the following statement with your code
-		return null;
+		int numRows = image.length;
+		int numCols = image[0].length;
+		int k=0;
+		Color[][] newImage = new Color[numRows][numCols];
+		for(int i=0; i<numRows; i++){
+			for(int j=numCols-1; j>0; j--){
+				newImage[i][k] = image [i][j];
+				k++;
+			}
+			k=0;
+		}	
+		return newImage;
 	}
 	
 	/**
 	 * Returns an image which is the vertically flipped version of the given image. 
 	 */
 	public static Color[][] flippedVertically(Color[][] image){
-		//// Replace the following statement with your code
-		return null;
+		int numRows = image.length;
+		int numCols = image[0].length;
+		int k=numCols-1;
+		Color[][] newImage = new Color[numRows][numCols];
+		for(int i=0; i<numRows; i++){
+			for(int j=0; j<numCols; j++){
+				newImage[i][k] = image [i][j];
+				k--;
+			}
+			k=numCols-1;
+		}	
+		return newImage;
 	}
 	
 	// Computes the luminance of the RGB values of the given pixel, using the formula 
 	// lum = 0.299 * r + 0.587 * g + 0.114 * b, and returns a Color object consisting
 	// the three values r = lum, g = lum, b = lum.
 	public static Color luminance(Color pixel) {
-		//// Replace the following statement with your code
-		return null;
+		Color[][] lumimage = new Color[1][1];
+		int lumi;
+		int red = pixel.getRed();
+		int green = pixel.getGreen();
+		int blue = pixel.getBlue();
+		lumi = (int)((red*0.299)+(green*0.587)+(blue*0.114));
+		lumimage [0][0] = new Color(lumi, lumi, lumi);	
+		return lumimage [0][0];
 	}
 	
 	/**
 	 * Returns an image which is the grayscaled version of the given image.
 	 */
 	public static Color[][] grayScaled(Color[][] image) {
-		//// Replace the following statement with your code
-		return null;
+		int numRows = image.length;
+		int numCols = image[0].length;
+		Color[][] newImage = new Color[numRows][numCols];
+		for(int i=0; i<numRows; i++){
+			for(int j=0; j<numCols; j++){
+				newImage[i][j] = luminance(image[i][j]);
+			}
+		}	
+		return newImage;
 	}	
 	
 	/**
