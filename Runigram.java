@@ -164,8 +164,20 @@ public class Runigram {
 	 * The image is scaled (resized) to have the given width and height.
 	 */
 	public static Color[][] scaled(Color[][] image, int width, int height) {
-		//// Replace the following statement with your code
-		return null;
+		Color[][] ans = new Color[height][width];
+		int imageWidth = image[0].length;
+		int imageHeight = image.length;
+		for (int i = 0; i < height; i++){
+			for (int j = 0; j < width; j++){
+				int i1 = i * imageHeight / height;
+				int j1 = j * imageWidth / width;
+				int red = image[i1][j1].getRed();
+				int green = image[i1][j1].getGreen();
+				int blue = image[i1][j1].getBlue();
+				ans[i][j] = new Color(red, green, blue);
+			}
+		}
+		return ans;
 	}
 	
 	/**
@@ -175,8 +187,11 @@ public class Runigram {
 	 * values in the two input color.
 	 */
 	public static Color blend(Color c1, Color c2, double alpha) {
-		//// Replace the following statement with your code
-		return null;
+		double red = alpha*c1.getRed() + (1 - alpha) * c2.getRed();
+		double green = alpha*c1.getGreen() + (1 - alpha) * c2.getGreen();
+		double blue = alpha*c1.getBlue() + (1 - alpha) * c2.getBlue();
+		Color blender = new Color((int) red, (int) green, (int) blue);
+		return blender;
 	}
 	
 	/**
@@ -186,8 +201,13 @@ public class Runigram {
 	 * The two images must have the same dimensions.
 	 */
 	public static Color[][] blend(Color[][] image1, Color[][] image2, double alpha) {
-		//// Replace the following statement with your code
-		return null;
+		Color[][] blender = new Color[image1.length][image1[0].length];
+		for(int i = 0; i < image1.length; i++){
+			for (int j = 0; j < image1[0].length; j++){
+				blender[i][j] = blend(image1[i][j], image2[i][j], alpha);
+			}
+		}
+		return blender;
 	}
 
 	/**
@@ -197,7 +217,11 @@ public class Runigram {
 	 * of the source image.
 	 */
 	public static void morph(Color[][] source, Color[][] target, int n) {
-		//// Replace this comment with your code
+		Color[][] newTarget = scaled(target, source[0].length, source.length);
+		for (double i = 0; i <= n; i++){
+			double alpha = 1 - i / (double)n ;
+			Color[][] image = blend(source, newTarget, alpha);
+		}
 	}
 	
 	/** Creates a canvas for the given image. */
