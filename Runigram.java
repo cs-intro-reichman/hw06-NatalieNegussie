@@ -16,11 +16,23 @@ public class Runigram {
 		// Creates an image which will be the result of various 
 		// image processing operations:
 		Color[][] imageOut;
+		Color[][] imageOut1;
+		Color[][] imageOut2;
 
 		// Tests the horizontal flipping of an image:
 		imageOut = flippedHorizontally(tinypic);
 		System.out.println();
 		print(imageOut);
+		
+		// Tests the horizontal flipping of an image:
+		imageOut1 = flippedVertically(tinypic);
+		System.out.println();
+		print(imageOut1);
+		
+		// Tests the horizontal flipping of an image:
+		imageOut2 = grayScaled(tinypic);
+		System.out.println();
+		print(imageOut2);
 		
 		//// Write here whatever code you need in order to test your work.
 		//// You can reuse / overide the contents of the imageOut array.
@@ -91,7 +103,7 @@ public class Runigram {
 		int k=0;
 		Color[][] newImage = new Color[numRows][numCols];
 		for(int i=0; i<numRows; i++){
-			for(int j=numCols-1; j>0; j--){
+			for(int j=numCols-1; j>=0; j--){
 				newImage[i][k] = image [i][j];
 				k++;
 			}
