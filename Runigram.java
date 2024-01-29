@@ -218,10 +218,10 @@ public class Runigram {
 	 */
 	public static void morph(Color[][] source, Color[][] target, int n) {
 		Color[][] newTarget = scaled(target, source[0].length, source.length);
-		for (double i = 0; i <= n; i++){
+		for (int i = 0; i <= n; i++){
 			double alpha = 1 - i / (double)n ;
-			Color[][] image = blend(source, newTarget, alpha);
-			Runigram.display(image);
+			Color[][] newImage = blend(source, newTarget, alpha);
+			Runigram.display(newImage);
 			StdDraw.pause(500);
 		}
 		
